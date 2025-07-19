@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 
 const Calculate = () => {
   const { groupId } = useParams()
   const [group, setGroup] = useState(null)
   const [loading, setLoading] = useState(true)
   const [result, setResult] = useState([])
+  const navigate = useNavigate()
 
   const fetchGroup = async () => {
     const API = import.meta.env.VITE_API_BASE_URL
@@ -102,13 +103,13 @@ const Calculate = () => {
         )}
 
         <div className="mt-8">
-          <a
-            href={`/group/${groupId}`}
-            className="text-indigo-600 dark:text-[#00ffe0] hover:underline"
-          >
-            ← Back to Group
-          </a>
-        </div>
+      <button
+        onClick={() => navigate(`/group/${groupId}`)}
+        className="text-indigo-600 dark:text-[#00ffe0] hover:underline bg-transparent border-none p-0 m-0 cursor-pointer"
+      >
+        ← Back to Group
+      </button>
+    </div>
       </div>
     </div>
   )
