@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import MemberList from '../Components/MemberList'
 import ExpenseList from '../Components/ExpenseList'
@@ -9,7 +9,7 @@ import AddExpenseModal from '../Components/AddExpenseModal'
 const GroupView = () => {
   const { groupId } = useParams()
   const { user, isAuthenticated } = useAuth0()
-
+  const navigate = useNavigate()
   const [group, setGroup] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -163,11 +163,11 @@ const GroupView = () => {
       {/* Calculate Split Button */}
       <div className="mt-10 text-center">
         <button
-          onClick={() => window.location.href = `/group/${group.groupId}/calculate`}
-          className="bg-green-600 dark:bg-[#00ffa2] text-white dark:text-black px-6 py-3 rounded-full font-semibold hover:bg-green-700 dark:hover:bg-[#00ffcc] transition"
-        >
-          💷 Calculate Split
-        </button>
+  onClick={() => navigate(`/group/${group.groupId}/calculate`)}
+  className="bg-green-600 dark:bg-[#00ffa2] text-white dark:text-black px-6 py-3 rounded-full font-semibold hover:bg-green-700 dark:hover:bg-[#00ffcc] transition"
+>
+  💷 Calculate Split
+</button>
       </div>
     </div>
   )
