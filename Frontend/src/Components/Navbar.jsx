@@ -35,7 +35,7 @@ const Navbar = ({ theme, setTheme }) => {
   }, [])
 
   return (
-    <nav className="bg-indigo-700 dark:bg-gradient-to-br dark:from-[#0f1115] dark:via-[#1a1d22] dark:to-[#0f1115] text-white dark:text-[#00fff7] shadow-md fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
+    <nav className="bg-[#145c9b] dark:bg-gradient-to-br dark:from-[#0f1115] dark:via-[#1a1d22] dark:to-[#0f1115] text-white dark:text-[#00fff7] shadow-md fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center border-b border-cyan-400/20">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
@@ -114,7 +114,7 @@ const Navbar = ({ theme, setTheme }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-indigo-600 dark:bg-black px-4 pb-4">
+        <div className="md:hidden bg-[#145c9b] dark:bg-black px-4 pb-4">
           <div className="flex flex-col space-y-3 mt-3">
             {navLinks.map((link) => (
               <Link

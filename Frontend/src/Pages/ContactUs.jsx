@@ -25,9 +25,9 @@ const ContactUs = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0f172a] text-gray-800 dark:text-gray-100 px-6 py-20">
-  <div className="max-w-2xl mx-auto bg-white dark:bg-[#1e293b] shadow-2xl rounded-2xl p-8">
-    <h1 className="text-3xl font-bold mb-6 text-indigo-700 dark:text-indigo-300 text-center">
+    <div className="min-h-screen bg-[#fbfbfc] dark:bg-[#0f172a] text-gray-800 dark:text-gray-100 px-6 py-20">
+  <div className="max-w-2xl mx-auto bg-[#9b7fba] dark:bg-[#1e293b] shadow-2xl rounded-2xl p-8 border-1">
+    <h1 className="text-3xl font-bold mb-6 text-[#0d06f0] dark:text-indigo-300 text-center">
       Contact Us
     </h1>
 
@@ -38,7 +38,7 @@ const ContactUs = () => {
     ) : (
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+          <label className="block mb-1 text-m font-bold text-[#4603c1] dark:text-gray-300">Name</label>
           <input
             type="text"
             name="name"
@@ -50,7 +50,7 @@ const ContactUs = () => {
         </div>
 
         <div>
-          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+          <label className="block mb-1 text-m font-bold text-[#4603c1] dark:text-gray-300">Email</label>
           <input
             type="email"
             name="email"
@@ -62,7 +62,7 @@ const ContactUs = () => {
         </div>
 
         <div>
-          <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+          <label className="block mb-1 text-m  text-[#4603c1] font-bold dark:text-gray-300">Message</label>
           <textarea
             name="message"
             value={form.message}
@@ -76,7 +76,7 @@ const ContactUs = () => {
         <div className="text-center">
           <button
             type="submit"
-            className="bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-6 py-2 rounded-full font-medium transition"
+            className="bg-[#145c9b] hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-6 py-2 rounded-full font-medium transition"
           >
             📬 Send Message
           </button>
