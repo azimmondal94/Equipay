@@ -6,6 +6,7 @@ import GroupView from './Pages/GroupView'
 import Calculate from './Pages/Calculate'
 import { useState, useEffect } from 'react'
 import ContactUs from './Pages/ContactUs'
+import Footer from './Components/Footer'
 
 function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light')
@@ -29,6 +30,7 @@ function App() {
         <Route path="/group/:groupId/calculate" element={<Calculate />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
+      <Footer />
     </Router>
   )
 }
