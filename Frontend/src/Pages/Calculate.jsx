@@ -73,7 +73,7 @@ const Calculate = () => {
   }
 
   if (loading) return (
-    <div className="p-10 text-center text-indigo-700 dark:text-[#00fff7] font-semibold">
+    <div className="p-10 text-center dark:bg-[#0f1115] text-indigo-700 dark:text-[#00fff7] font-semibold">
       Calculating...
     </div>
   )

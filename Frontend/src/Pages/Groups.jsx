@@ -10,9 +10,9 @@ const Groups = () => {
   const [showModal, setShowModal] = useState(false)
   const [newGroupName, setNewGroupName] = useState('')
   const [creating, setCreating] = useState(false)
+  const API = import.meta.env.VITE_API_BASE_URL
 
   const fetchGroups = async () => {
-    const API = import.meta.env.VITE_API_BASE_URL
     try {
       const res = await fetch(`${API}/api/groups?email=${user.email}`)
       const data = await res.json()
@@ -64,7 +64,7 @@ const Groups = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-indigo-700 dark:text-[#00fff7] font-semibold text-lg">
+      <div className="min-h-screen flex items-center dark:bg-[#0f1115] justify-center text-indigo-700 dark:text-[#00fff7] font-semibold text-lg">
         Please log in to view your groups.
       </div>
     )
@@ -72,7 +72,7 @@ const Groups = () => {
 
   if (isLoading || loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-indigo-700 dark:text-[#00fff7] font-semibold text-lg">
+      <div className="min-h-screen dark:bg-[#0f1115] flex items-center justify-center text-indigo-700 dark:text-[#00fff7] font-semibold text-lg">
         Loading your groups...
       </div>
     )
