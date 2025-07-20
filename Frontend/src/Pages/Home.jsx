@@ -25,7 +25,7 @@ const Home = () => {
 
       {/* Subheading */}
       <p className="text-gray-700 dark:text-[#c4f5f6] text-lg md:text-xl max-w-2xl mb-8 z-10 leading-relaxed">
-        Split expenses smarter with AI 🧠, OCR 📸, and voice input 🎤 <br />
+        Split expenses smarter with voice input 🎤 <br />
         No math, no mess — just effortless balance.
       </p>
 
