@@ -94,7 +94,9 @@ const GroupView = () => {
     setSharedBy([])
   }
 
-  if (loading) return <div className="p-10 min-h-screen text-center dark:bg-[#0f1115] text-indigo-700 dark:text-[#00fff7] font-semibold">Loading group...</div>
+  if (loading) return <div className="min-h-screen dark:bg-[#0f1115] flex items-center justify-center text-indigo-700 dark:text-[#00fff7] font-semibold text-lg">
+        Loading your group...
+      </div>
 
   return (
     <div className="min-h-screen bg-indigo-50 dark:bg-[#0f1115] px-6 py-20 transition-colors duration-300">
