@@ -1,11 +1,12 @@
 import React from 'react'
 import { Trash2 } from 'lucide-react'
 
-const DeleteButton = ({ type, groupId, identifier, onDelete }) => {
+const DeleteButton = ({ type, groupId, identifier, onDelete,setDeleting }) => {
     const API = import.meta.env.VITE_API_BASE_URL
   const handleDelete = async () => {
     const confirm = window.confirm('Are you sure you want to delete this?')
     if (!confirm) return
+    setDeleting(true)
     let url=''
     switch (type) {
       case 'group':
@@ -32,6 +33,8 @@ const DeleteButton = ({ type, groupId, identifier, onDelete }) => {
       }
     } catch (error) {
       console.error('Error deleting:', error)
+    }finally{
+      setDeleting(false)
     }
   }
 

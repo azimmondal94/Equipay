@@ -1,9 +1,10 @@
 import React from 'react'
 import { Trash2 } from 'lucide-react'
 
-const ExpenseList = ({ expenses, members, groupId, onDelete }) => {
+const ExpenseList = ({ expenses, members, groupId, onDelete,setDeletingExpense }) => {
 
   const handleDelete = async (expenseId) => {
+    setDeletingExpense(true)
     try {
       const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/groups/${groupId}/expenses/${expenseId}`, {
         method: 'DELETE',
@@ -16,6 +17,8 @@ const ExpenseList = ({ expenses, members, groupId, onDelete }) => {
       }
     } catch (error) {
       console.error('Error deleting expense:', error)
+    }finally{
+      setDeletingExpense(false)
     }
   }
 //modify

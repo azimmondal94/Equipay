@@ -5,6 +5,7 @@ import MemberList from '../Components/MemberList'
 import ExpenseList from '../Components/ExpenseList'
 import AddMemberModal from '../Components/AddMemberModal'
 import AddExpenseModal from '../Components/AddExpenseModal'
+import Loading from '../Components/Loading'
 
 const GroupView = () => {
   const { groupId } = useParams()
@@ -18,6 +19,10 @@ const GroupView = () => {
 
   const [memberName, setMemberName] = useState('')
   const [memberEmail, setMemberEmail] = useState('')
+  const [addingMember, setAddingMember] = useState(false)
+  const [addingExpense, setAddingExpense] = useState(false)
+  const [deletingMember, setDeletingMember] = useState(false)
+  const [deletingExpense, setDeletingExpense] = useState(false)
 
   const [desc, setDesc] = useState('')
   const [amount, setAmount] = useState('')
@@ -43,6 +48,7 @@ const GroupView = () => {
   const handleAddMember = async () => {
   
     if (!memberName || !memberEmail) return
+    setAddingMember(true)
     const res = await fetch(`${API}/api/groups/${groupId}/add-member`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -53,6 +59,7 @@ const GroupView = () => {
       handleCloseMemberModal()
       fetchGroup()
     }
+    setAddingMember(false)
   }
 
   const handleAddExpense = async () => {
@@ -60,6 +67,7 @@ const GroupView = () => {
       console.warn("Missing fields", { desc, amount, sharedBy })
       return
     }
+    setAddingExpense(true)
     try {
       const res = await fetch(`${API}/api/groups/${groupId}/add-expense`, {
         method: 'POST',
@@ -78,6 +86,8 @@ const GroupView = () => {
       }
     } catch (error) {
       console.error("🔥 Fetch failed:", error)
+    }finally{
+      setAddingExpense(false)
     }
   }
 
@@ -102,32 +112,20 @@ const GroupView = () => {
   }
 
   if (loading) return (
-  <div className="min-h-screen dark:bg-[#0f1115] flex items-center justify-center text-indigo-700 dark:text-[#00fff7] font-semibold text-lg">
-    <div className="flex items-center gap-3">
-      <svg
-        className="animate-spin h-6 w-6 text-indigo-700 dark:text-[#00fff7]"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          className="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
-        />
-        <path
-          className="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-        />
-      </svg>
-      <span>Loading your group...</span>
-    </div>
-  </div>
-)
+  <Loading text="Loading Your group" />
+ )
+ if(addingExpense) return(
+  <Loading text='Adding Expense' />
+ )
+ if(addingMember) return(
+  <Loading text='Adding Member' />
+ )
+ if(deletingExpense) return(
+  <Loading text='Deleting Expense' />
+ )
+ if(deletingMember) return(
+  <Loading text='Deleting Member' />
+ )
 
 
   return (
@@ -146,7 +144,7 @@ const GroupView = () => {
               + Add Member
             </button>
           </div>
-          <MemberList members={group.members} groupId={groupId} onDelete={fetchGroup} />
+          <MemberList members={group.members} groupId={groupId} onDelete={fetchGroup} setDeletingMember={setDeletingMember} />
         </div>
 
         {/* Expenses */}
@@ -163,7 +161,7 @@ const GroupView = () => {
           {group.expenses.length === 0 ? (
             <p className="text-gray-500 dark:text-gray-400">No expenses yet.</p>
           ) : (
-            <ExpenseList expenses={group.expenses} members={group.members} groupId={groupId} onDelete={fetchGroup}  />
+            <ExpenseList expenses={group.expenses} members={group.members} groupId={groupId} onDelete={fetchGroup} setDeletingExpense={setDeletingExpense}  />
           )}
         </div>
       </div>

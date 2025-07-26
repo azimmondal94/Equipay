@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 import DeleteButton from '../Components/DeleteButton'
+import Loading from '../Components/Loading'
 
 const Groups = () => {
   const { user, isAuthenticated, isLoading } = useAuth0()
@@ -10,6 +11,7 @@ const Groups = () => {
   const [showModal, setShowModal] = useState(false)
   const [newGroupName, setNewGroupName] = useState('')
   const [creating, setCreating] = useState(false)
+  const [deleting, setDeleting] = useState(false)
   const API = import.meta.env.VITE_API_BASE_URL
 
   const fetchGroups = async () => {
@@ -33,7 +35,6 @@ const Groups = () => {
   const handleCreateGroup = async () => {
     if (!newGroupName.trim()) return
     setCreating(true)
-    setLoading(true)
 
     try {
       const res = await fetch(`${API}/api/groups`, {
@@ -71,32 +72,11 @@ const Groups = () => {
   }
 
   if (isLoading || loading) return (
-  <div className="min-h-screen dark:bg-[#0f1115] flex items-center justify-center text-indigo-700 dark:text-[#00fff7] font-semibold text-lg">
-    <div className="flex items-center gap-3">
-      <svg
-        className="animate-spin h-6 w-6 text-indigo-700 dark:text-[#00fff7]"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          className="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
-        />
-        <path
-          className="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-        />
-      </svg>
-      <span>Loading your groups ...</span>
-    </div>
-  </div>
-)
+  <Loading text="Loading Your Groups" />
+  )
+  if(deleting) return(
+    <Loading text="Deleting the group " />
+  )
 
 
   return (
@@ -127,7 +107,7 @@ const Groups = () => {
                       {group.groupName}
                     </h3>
                   </Link>
-                  <DeleteButton type="group" groupId={group.groupId} onDelete={fetchGroups} />
+                  <DeleteButton type="group" groupId={group.groupId} onDelete={fetchGroups} setDeleting={setDeleting} />
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Members: {group.members?.length || 0}

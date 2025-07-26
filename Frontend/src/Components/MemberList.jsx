@@ -1,7 +1,7 @@
 import React from 'react'
 import DeleteButton from './DeleteButton'
 
-const MemberList = ({ members, groupId, onDelete }) => (
+const MemberList = ({ members, groupId, onDelete,setDeletingMember }) => (
   <ul className="space-y-3 pl-2 text-gray-800 dark:text-gray-200">
     {members.map(member => (
       <li
@@ -17,6 +17,7 @@ const MemberList = ({ members, groupId, onDelete }) => (
           groupId={groupId}
           identifier={member.email}
           onDelete={onDelete}
+          setDeleting={setDeletingMember}
         />
       </li>
     ))}
