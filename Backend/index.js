@@ -1,20 +1,20 @@
-import express from 'express'
-import dotenv from 'dotenv'
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDb from './connect.js';
+import groupRoutes from './routes/groupRoutes.js';
 import cors from 'cors'
-import connectDB from './connection.js'
-import groupRoutes from './routes/groupRoutes.js'
+
+dotenv.config();
+
+const app=express();
+const port=process.env.port;
 
 
-dotenv.config()
-const app = express()
-
+connectDb();
 app.use(cors())
 app.use(express.json())
+app.use('/api',groupRoutes)
 
-connectDB()
-
-app.use('/api', groupRoutes)
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`)
-})
+app.listen(port,()=>{
+    console.log(`Server is running on port ${port}`);
+});

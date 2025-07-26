@@ -17,12 +17,6 @@ const DeleteButton = ({ type, groupId, identifier, onDelete }) => {
         if (!groupId || !identifier) return console.error('Missing groupId or email for member deletion')
         url = `${API}/api/groups/${groupId}/member/${identifier}`
         break
-
-      case 'expense':
-        if (!groupId || !identifier) return console.error('Missing groupId or expenseId for expense deletion')
-        url = `${API}/api/groups/${groupId}/expense/${identifier}`
-        break
-
       default:
         console.error('Invalid delete type provided')
         return

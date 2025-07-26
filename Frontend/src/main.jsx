@@ -8,7 +8,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <Auth0Provider
     domain="dev-vk484f7n5u0zbw2k.us.auth0.com"
-    clientId="2o6PljzYyyya7oQKcvvr5m8yKzFqcXnj"
+    // clientId="2o6PljzYyyya7oQKcvvr5m8yKzFqcXnj"
+    clientId="rLr6BoFv8Q8GxWzpC1VftnA6VFJIz8bC"
     authorizationParams={{
       redirect_uri: window.location.origin
     }}
